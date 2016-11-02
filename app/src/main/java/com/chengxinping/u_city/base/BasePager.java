@@ -7,6 +7,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.chengxinping.u_city.R;
+import com.chengxinping.u_city.activities.MainActivity;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * 五个标签页的基类
@@ -32,7 +34,25 @@ public class BasePager {
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
         btnMenu = (ImageButton) view.findViewById(R.id.btn_menu);
         flContent = (FrameLayout) view.findViewById(R.id.fl_content);
+
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggle();
+            }
+        });
+
         return view;
+    }
+
+    /**
+     * 打开或关闭侧边栏
+     */
+    private void toggle() {
+        MainActivity mainUi = (MainActivity) mActivity;
+        SlidingMenu slidingMenu = mainUi.getSlidingMenu();
+        slidingMenu.toggle(); //如果当前状态是开，调用之后就关 反之亦然；
+
     }
 
     //初始化数据
