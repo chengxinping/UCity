@@ -32,7 +32,7 @@ public class HomePager extends BasePager {
         flContent.addView(view);
 
         //修改标题
-        tvTitle.setText("智慧武汉");
+        tvTitle.setText("智慧城市");
 
         //隐藏菜单按钮
         btnMenu.setVisibility(View.INVISIBLE);

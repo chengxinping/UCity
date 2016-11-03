@@ -123,8 +123,6 @@ public class ContentFragment extends BaseFragment {
         } else {
             slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
         }
-
-
     }
 
     class ContentAdapter extends PagerAdapter {
