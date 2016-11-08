@@ -1,12 +1,8 @@
 package com.chengxinping.u_city.base.impl;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chengxinping.u_city.activities.MainActivity;
@@ -16,11 +12,10 @@ import com.chengxinping.u_city.base.impl.menu.InteractMenuDetailPager;
 import com.chengxinping.u_city.base.impl.menu.NewsMenuDetailPager;
 import com.chengxinping.u_city.base.impl.menu.PhotosMenuDetailPager;
 import com.chengxinping.u_city.base.impl.menu.TopicMenuDetailPager;
-import com.chengxinping.u_city.domain.NewsMenu;
+import com.chengxinping.u_city.bean.NewsMenu;
 import com.chengxinping.u_city.fragment.LeftMenuFragment;
 import com.chengxinping.u_city.global.GlobakConstats;
 import com.chengxinping.u_city.utils.CacheUtils;
-import com.chengxinping.u_city.utils.PrefUtils;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;

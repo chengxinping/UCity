@@ -1,23 +1,19 @@
 package com.chengxinping.u_city.base.impl.menu;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.activities.MainActivity;
 import com.chengxinping.u_city.base.BaseMenuDetailPager;
-import com.chengxinping.u_city.domain.NewsMenu;
+import com.chengxinping.u_city.bean.NewsMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 

@@ -11,10 +11,8 @@ import android.widget.TextView;
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.activities.MainActivity;
 import com.chengxinping.u_city.base.impl.NewsCenterPager;
-import com.chengxinping.u_city.domain.NewsMenu;
+import com.chengxinping.u_city.bean.NewsMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
-import org.xutils.x;
 
 import java.util.ArrayList;
 

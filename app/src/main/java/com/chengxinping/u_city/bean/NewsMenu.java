@@ -1,4 +1,4 @@
-package com.chengxinping.u_city.domain;
+package com.chengxinping.u_city.bean;
 
 import java.util.ArrayList;
 
