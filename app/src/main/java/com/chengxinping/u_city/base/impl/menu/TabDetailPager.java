@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +18,7 @@ import com.chengxinping.u_city.bean.NewsTabBean;
 import com.chengxinping.u_city.global.GlobakConstats;
 import com.chengxinping.u_city.utils.CacheUtils;
 import com.chengxinping.u_city.view.CirclePageIndicator;
+import com.chengxinping.u_city.view.PullToRefreshListView;
 import com.chengxinping.u_city.view.TopNewsViewPager;
 import com.google.gson.Gson;
 
@@ -51,7 +51,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
     private CirclePageIndicator mIndicator;
 
     @ViewInject(R.id.lv_list)
-    private ListView lvList;
+    private PullToRefreshListView lvList;
 
     private ArrayList<NewsTabBean.NewsData> mNewsList;
     private NewsAdapter mNewsAdapter;
@@ -71,6 +71,16 @@ public class TabDetailPager extends BaseMenuDetailPager {
         View mHeaderView = View.inflate(mActivity, R.layout.list_item_header, null);
         x.view().inject(this, mHeaderView);//此处必须头布局注入
         lvList.addHeaderView(mHeaderView);
+
+        //5.前端界面设置回调
+        lvList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
+            @Override
+            public void OnRefresh() {
+                //刷新数据
+                getDataFromServer();
+
+            }
+        });
         return view;
     }
 
@@ -93,11 +103,15 @@ public class TabDetailPager extends BaseMenuDetailPager {
                 processData(result);
 
                 CacheUtils.setCache(mUrl, result, mActivity);
+                //收起刷新控件
+                lvList.OnRefreshComplete(true);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 Toast.makeText(mActivity, "网络请求错误" + mUrl, Toast.LENGTH_SHORT).show();
+                //收起刷新控件
+                lvList.OnRefreshComplete(false);
 
             }
 
@@ -108,7 +122,6 @@ public class TabDetailPager extends BaseMenuDetailPager {
 
             @Override
             public void onFinished() {
-
             }
         });
     }

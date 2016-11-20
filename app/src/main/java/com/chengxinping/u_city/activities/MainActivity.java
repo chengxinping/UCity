@@ -3,7 +3,9 @@ package com.chengxinping.u_city.activities;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.fragment.ContentFragment;
@@ -15,6 +17,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
     private final static String TAG_LEFT_MENU = "TAG_LEFT_MENU";
     private final static String TAG_CONTENT = "TAG_CONTENT";
+    private long exitTime = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,5 +68,20 @@ public class MainActivity extends SlidingFragmentActivity {
         FragmentManager fm = getSupportFragmentManager();
         ContentFragment fragment = (ContentFragment) fm.findFragmentByTag(TAG_CONTENT);//根据标记找到侧边栏
         return fragment;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
