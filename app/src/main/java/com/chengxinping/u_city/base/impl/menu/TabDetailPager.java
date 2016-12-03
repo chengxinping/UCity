@@ -1,11 +1,13 @@
 package com.chengxinping.u_city.base.impl.menu;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +19,7 @@ import com.chengxinping.u_city.bean.NewsMenu;
 import com.chengxinping.u_city.bean.NewsTabBean;
 import com.chengxinping.u_city.global.GlobakConstats;
 import com.chengxinping.u_city.utils.CacheUtils;
+import com.chengxinping.u_city.utils.PrefUtils;
 import com.chengxinping.u_city.view.CirclePageIndicator;
 import com.chengxinping.u_city.view.PullToRefreshListView;
 import com.chengxinping.u_city.view.TopNewsViewPager;
@@ -69,7 +72,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
         x.view().inject(this, view);
 
         //给ListView添加头布局
-        View mHeaderView = View.inflate(mActivity, R.layout.list_item_header, null);
+        final View mHeaderView = View.inflate(mActivity, R.layout.list_item_header, null);
         x.view().inject(this, mHeaderView);//此处必须头布局注入
         lvList.addHeaderView(mHeaderView);
 
@@ -91,6 +94,23 @@ public class TabDetailPager extends BaseMenuDetailPager {
                     Toast.makeText(mActivity, "没有更多数据了...", Toast.LENGTH_SHORT).show();
                     lvList.OnRefreshComplete(true);
                 }
+            }
+        });
+        lvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int headerViewsCount = lvList.getHeaderViewsCount();
+                position = position - headerViewsCount;
+                NewsTabBean.NewsData news = mNewsList.get(position);
+                //标记已读未读
+                String readIds = PrefUtils.getString(mActivity, "read_ids", "");
+                if (!readIds.contains(news.id + "")) {  //避免重复添加
+                    readIds = readIds + news.id + ",";
+                    PrefUtils.setString(mActivity, "read_ids", readIds);
+                }
+                //被点击的item的文字颜色改为灰色
+                TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
+                tvTitle.setTextColor(Color.GRAY);
             }
         });
         return view;
@@ -301,6 +321,13 @@ public class TabDetailPager extends BaseMenuDetailPager {
             NewsTabBean.NewsData news = getItem(position);
             holder.tvTitle.setText(news.title);
             holder.tvDate.setText(news.pubdate);
+
+            String readIds = PrefUtils.getString(mActivity, "read_ids", "");
+            if (readIds.contains(news.id + "")) {
+                holder.tvTitle.setTextColor(Color.GRAY);
+            } else {
+                holder.tvTitle.setTextColor(Color.BLACK);
+            }
 
             x.image().bind(holder.ivIcon, news.listimage, options);
 
