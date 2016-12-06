@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.chengxinping.u_city.activities.MainActivity;
 import com.chengxinping.u_city.base.BaseMenuDetailPager;
 import com.chengxinping.u_city.base.BasePager;
 import com.chengxinping.u_city.base.impl.menu.InteractMenuDetailPager;
@@ -13,7 +12,6 @@ import com.chengxinping.u_city.base.impl.menu.NewsMenuDetailPager;
 import com.chengxinping.u_city.base.impl.menu.PhotosMenuDetailPager;
 import com.chengxinping.u_city.base.impl.menu.TopicMenuDetailPager;
 import com.chengxinping.u_city.bean.NewsMenu;
-import com.chengxinping.u_city.fragment.LeftMenuFragment;
 import com.chengxinping.u_city.global.GlobakConstats;
 import com.chengxinping.u_city.utils.CacheUtils;
 import com.google.gson.Gson;
@@ -43,9 +41,6 @@ public class NewsCenterPager extends BasePager {
 
         //修改标题
         tvTitle.setText("新闻中心");
-
-        //显示菜单按钮
-        btnMenu.setVisibility(View.VISIBLE);
 
         //先判断有没有缓存，如果有的话就先加载缓存
         String cache = CacheUtils.getCache(GlobakConstats.CATEGORY_URL, mActivity);
@@ -97,12 +92,6 @@ public class NewsCenterPager extends BasePager {
     private void processData(String json) {
         Gson gson = new Gson();
         mNewsData = gson.fromJson(json, NewsMenu.class);
-
-        //获取侧边栏对象
-        MainActivity mainUI = (MainActivity) mActivity;
-        LeftMenuFragment fragment = mainUI.getLeftMenuFragment();
-        //给侧边栏设置数据
-        fragment.setMenuData(mNewsData.data);
 
         //初始化四个菜单详情页
         mMenuDetailPagers = new ArrayList<BaseMenuDetailPager>();

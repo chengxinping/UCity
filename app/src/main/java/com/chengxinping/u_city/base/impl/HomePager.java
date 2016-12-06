@@ -3,7 +3,6 @@ package com.chengxinping.u_city.base.impl;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.TextView;
 
 import com.chengxinping.u_city.base.BasePager;
@@ -34,7 +33,5 @@ public class HomePager extends BasePager {
         //修改标题
         tvTitle.setText("智慧城市");
 
-        //隐藏菜单按钮
-        btnMenu.setVisibility(View.INVISIBLE);
     }
 }
