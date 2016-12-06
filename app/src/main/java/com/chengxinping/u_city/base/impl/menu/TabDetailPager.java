@@ -1,6 +1,7 @@
 package com.chengxinping.u_city.base.impl.menu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chengxinping.u_city.R;
+import com.chengxinping.u_city.activities.NewsDetailActivity;
 import com.chengxinping.u_city.base.BaseMenuDetailPager;
 import com.chengxinping.u_city.bean.NewsMenu;
 import com.chengxinping.u_city.bean.NewsTabBean;
@@ -111,6 +113,10 @@ public class TabDetailPager extends BaseMenuDetailPager {
                 //被点击的item的文字颜色改为灰色
                 TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
                 tvTitle.setTextColor(Color.GRAY);
+
+                Intent intent = new Intent(mActivity, NewsDetailActivity.class);
+                intent.putExtra("url", news.url);
+                mActivity.startActivity(intent);
             }
         });
         return view;

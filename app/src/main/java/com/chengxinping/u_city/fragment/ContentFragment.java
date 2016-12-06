@@ -7,15 +7,12 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import com.chengxinping.u_city.R;
-import com.chengxinping.u_city.activities.MainActivity;
 import com.chengxinping.u_city.base.BasePager;
-import com.chengxinping.u_city.base.impl.GovAffairsPager;
 import com.chengxinping.u_city.base.impl.HomePager;
 import com.chengxinping.u_city.base.impl.NewsCenterPager;
 import com.chengxinping.u_city.base.impl.SettingPager;
 import com.chengxinping.u_city.base.impl.SmartServicePager;
 import com.chengxinping.u_city.view.NoScrollViewPager;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
 
@@ -36,7 +33,6 @@ public class ContentFragment extends BaseFragment {
         mPagers.add(new HomePager(mActivity));
         mPagers.add(new NewsCenterPager(mActivity));
         mPagers.add(new SmartServicePager(mActivity));
-        mPagers.add(new GovAffairsPager(mActivity));
         mPagers.add(new SettingPager(mActivity));
 
         mViewPager.setAdapter(new ContentAdapter());
@@ -55,11 +51,8 @@ public class ContentFragment extends BaseFragment {
                     case R.id.rb_smart:
                         mViewPager.setCurrentItem(2, false);
                         break;
-                    case R.id.rb_gov:
-                        mViewPager.setCurrentItem(3, false);
-                        break;
                     case R.id.rb_setting:
-                        mViewPager.setCurrentItem(4, false);
+                        mViewPager.setCurrentItem(3, false);
                         break;
                     default:
                         break;
@@ -80,14 +73,6 @@ public class ContentFragment extends BaseFragment {
                 BasePager pager = mPagers.get(position);
                 pager.initData();
 
-                if (position == 0 || position == mPagers.size() - 1) {
-                    //首页和设置页面禁止侧边栏
-                    setSlidingMenuEnable(false);
-                } else {
-                    //其他页面开启侧边栏
-                    setSlidingMenuEnable(true);
-                }
-
             }
 
             @Override
@@ -97,8 +82,6 @@ public class ContentFragment extends BaseFragment {
         });
         //手动加载第一页数据
         mPagers.get(0).initData();
-        //首页禁用
-        setSlidingMenuEnable(false);
     }
 
     @Override
@@ -109,21 +92,6 @@ public class ContentFragment extends BaseFragment {
         return view;
     }
 
-    /**
-     * 开启或禁用侧边栏
-     *
-     * @param enable
-     */
-    public void setSlidingMenuEnable(boolean enable) {
-        //获取侧边栏对象
-        MainActivity mainUI = (MainActivity) mActivity;
-        SlidingMenu slidingMenu = mainUI.getSlidingMenu();
-        if (enable) {
-            slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        } else {
-            slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
-        }
-    }
 
     class ContentAdapter extends PagerAdapter {
         @Override

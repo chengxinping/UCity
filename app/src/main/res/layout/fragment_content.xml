@@ -38,12 +38,6 @@
             android:text="智慧服务" />
 
         <RadioButton
-            android:id="@+id/rb_gov"
-            style="@style/Bottom_Tab_Style"
-            android:drawableTop="@drawable/tab_gov_selector"
-            android:text="政务" />
-
-        <RadioButton
             android:id="@+id/rb_setting"
             style="@style/Bottom_Tab_Style"
             android:drawableTop="@drawable/tab_setting_selector"

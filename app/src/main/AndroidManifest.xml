@@ -26,6 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.GuideActivity" />
+        <activity
+            android:name=".activities.NewsDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
