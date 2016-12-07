@@ -1,7 +1,5 @@
 package com.chengxinping.u_city.global;
 
-import org.xutils.http.RequestParams;
-
 /**
  * Created by 平瓶平瓶子 on 2016/11/1.
  */

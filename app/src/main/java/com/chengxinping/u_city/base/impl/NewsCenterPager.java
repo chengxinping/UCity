@@ -7,10 +7,7 @@ import android.widget.Toast;
 
 import com.chengxinping.u_city.base.BaseMenuDetailPager;
 import com.chengxinping.u_city.base.BasePager;
-import com.chengxinping.u_city.base.impl.menu.InteractMenuDetailPager;
 import com.chengxinping.u_city.base.impl.menu.NewsMenuDetailPager;
-import com.chengxinping.u_city.base.impl.menu.PhotosMenuDetailPager;
-import com.chengxinping.u_city.base.impl.menu.TopicMenuDetailPager;
 import com.chengxinping.u_city.bean.NewsMenu;
 import com.chengxinping.u_city.global.GlobakConstats;
 import com.chengxinping.u_city.utils.CacheUtils;
@@ -93,12 +90,9 @@ public class NewsCenterPager extends BasePager {
         Gson gson = new Gson();
         mNewsData = gson.fromJson(json, NewsMenu.class);
 
-        //初始化四个菜单详情页
+        //初始化菜单详情页
         mMenuDetailPagers = new ArrayList<BaseMenuDetailPager>();
         mMenuDetailPagers.add(new NewsMenuDetailPager(mActivity,mNewsData.data.get(0).children));
-        mMenuDetailPagers.add(new TopicMenuDetailPager(mActivity));
-        mMenuDetailPagers.add(new PhotosMenuDetailPager(mActivity));
-        mMenuDetailPagers.add(new InteractMenuDetailPager(mActivity));
 
         //切换到新闻菜单详情页
         setCurrentDetailPager(0);

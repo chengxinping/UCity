@@ -30,7 +30,7 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager {
     private TabLayout mIndicator;
 
     private ArrayList<NewsMenu.NewsTabData> mTabData;  //页签网络数据
-    private ArrayList<TabDetailPager> mPagers; //页签集合
+    private ArrayList<NewsDetailPager> mPagers; //页签集合
 
 
     public NewsMenuDetailPager(Activity activity, ArrayList<NewsMenu.NewsTabData> children) {
@@ -48,9 +48,9 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager {
     @Override
     public void initData() {
         //初始化页签
-        mPagers = new ArrayList<TabDetailPager>();
+        mPagers = new ArrayList<NewsDetailPager>();
         for (int i = 0; i < mTabData.size(); i++) {
-            TabDetailPager pager = new TabDetailPager(mActivity, mTabData.get(i));
+            NewsDetailPager pager = new NewsDetailPager(mActivity, mTabData.get(i));
             mPagers.add(pager);
         }
 
@@ -92,7 +92,7 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
-            TabDetailPager pager = mPagers.get(position);
+            NewsDetailPager pager = mPagers.get(position);
             View view = pager.mRootView;
             container.addView(view);
             pager.initData();

@@ -40,7 +40,7 @@ import java.util.ArrayList;
  * Created by 平瓶平瓶子 on 2016/11/3.
  */
 
-public class TabDetailPager extends BaseMenuDetailPager {
+public class NewsDetailPager extends BaseMenuDetailPager {
 
     private NewsMenu.NewsTabData mTabData; //单个页签的网络数据
     private String mUrl;
@@ -62,7 +62,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
     private NewsAdapter mNewsAdapter;
     private String mMoreUrl; //下一页数据链接
 
-    public TabDetailPager(Activity activity, NewsMenu.NewsTabData newsTabData) {
+    public NewsDetailPager(Activity activity, NewsMenu.NewsTabData newsTabData) {
         super(activity);
         mTabData = newsTabData;
         mUrl = GlobakConstats.SERVER_URL + mTabData.url;
