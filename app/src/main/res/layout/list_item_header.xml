@@ -36,8 +36,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="10dp"
-                app:fillColor="#f00"
-                app:pageColor="#ccc"
+                app:fillColor="#e8989a"
+                app:pageColor="#fff"
                 app:radius="3dp" />
         </RelativeLayout>
     </FrameLayout>

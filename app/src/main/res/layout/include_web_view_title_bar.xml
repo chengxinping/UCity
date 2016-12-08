@@ -23,14 +23,4 @@
         android:layout_marginRight="10dp"
         android:background="@null"
         android:src="@drawable/icon_share" />
-
-    <ImageButton
-        android:id="@+id/btn_text_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/btn_share"
-        android:background="@null"
-        android:src="@drawable/icon_textsize" />
 </RelativeLayout>

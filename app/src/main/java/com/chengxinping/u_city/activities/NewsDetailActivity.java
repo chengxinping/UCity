@@ -4,9 +4,12 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.view.ProgressWebView;
@@ -15,9 +18,15 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailActivity extends AppCompatActivity implements View.OnClickListener {
     @ViewInject(R.id.wb_news_detail)
     ProgressWebView mWebView;
+
+    @ViewInject(R.id.btn_back)
+    ImageButton btnBack;
+
+    @ViewInject(R.id.btn_share)
+    ImageButton btnShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,8 @@ public class NewsDetailActivity extends AppCompatActivity {
         settings.setUseWideViewPort(true);// 支持双击缩放(wap网页不支持)
         settings.setJavaScriptEnabled(true);// 支持js功能
 
+        btnBack.setOnClickListener(this);
+        btnShare.setOnClickListener(this);
     }
 
     @TargetApi(19)
@@ -54,5 +65,19 @@ public class NewsDetailActivity extends AppCompatActivity {
             winParams.flags &= ~bits;
         }
         win.setAttributes(winParams);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_back:
+                finish();
+                break;
+            case R.id.btn_share:
+                Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
     }
 }

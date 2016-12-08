@@ -8,7 +8,7 @@ import android.widget.RadioGroup;
 
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.base.BasePager;
-import com.chengxinping.u_city.base.impl.HomePager;
+import com.chengxinping.u_city.base.impl.CityMemoryPager;
 import com.chengxinping.u_city.base.impl.NewsCenterPager;
 import com.chengxinping.u_city.base.impl.SettingPager;
 import com.chengxinping.u_city.base.impl.SmartServicePager;
@@ -30,8 +30,8 @@ public class ContentFragment extends BaseFragment {
     public void initData() {
         mPagers = new ArrayList<BasePager>();
 
-        mPagers.add(new HomePager(mActivity));
         mPagers.add(new NewsCenterPager(mActivity));
+        mPagers.add(new CityMemoryPager(mActivity));
         mPagers.add(new SmartServicePager(mActivity));
         mPagers.add(new SettingPager(mActivity));
 
@@ -42,10 +42,10 @@ public class ContentFragment extends BaseFragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.rb_home:
+                    case R.id.rb_news:
                         mViewPager.setCurrentItem(0, false);   //false表示不具有滑动动画
                         break;
-                    case R.id.rb_news:
+                    case R.id.rb_city_memory:
                         mViewPager.setCurrentItem(1, false);
                         break;
                     case R.id.rb_smart:
