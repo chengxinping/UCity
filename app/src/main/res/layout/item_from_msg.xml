@@ -38,6 +38,7 @@
         </LinearLayout>
 
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/id_from_msg_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

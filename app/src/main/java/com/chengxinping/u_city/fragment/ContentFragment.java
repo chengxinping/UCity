@@ -8,7 +8,7 @@ import android.widget.RadioGroup;
 
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.base.BasePager;
-import com.chengxinping.u_city.base.impl.CityMemoryPager;
+import com.chengxinping.u_city.base.impl.CityMapPager;
 import com.chengxinping.u_city.base.impl.NewsCenterPager;
 import com.chengxinping.u_city.base.impl.SettingPager;
 import com.chengxinping.u_city.base.impl.SmartServicePager;
@@ -31,7 +31,7 @@ public class ContentFragment extends BaseFragment {
         mPagers = new ArrayList<BasePager>();
 
         mPagers.add(new NewsCenterPager(mActivity));
-        mPagers.add(new CityMemoryPager(mActivity));
+        mPagers.add(new CityMapPager(mActivity));
         mPagers.add(new SmartServicePager(mActivity));
         mPagers.add(new SettingPager(mActivity));
 
@@ -127,5 +127,25 @@ public class ContentFragment extends BaseFragment {
     public NewsCenterPager getNewsCenterPager() {
         NewsCenterPager pager = (NewsCenterPager) mPagers.get(1);
         return pager;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        new CityMapPager(mActivity).mLocationClient.stop();
+        new CityMapPager(mActivity).mMapView.onDestroy();
+        new CityMapPager(mActivity).mBaiduMap.setMyLocationEnabled(false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        new CityMapPager(mActivity).mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        new CityMapPager(mActivity).mMapView.onPause();
     }
 }

@@ -18,7 +18,7 @@ import java.util.Date;
  */
 public class HttpUtils {
     private static final String URL = "http://www.tuling123.com/openapi/api";
-    private static final String APIKEY = "ca6b8a84bd0780d59174b18adafa78f0";
+    private static final String APIKEY = "7fbf1f67692d42e1aa32c38c68f10863";
 
 
 //    public static ChatMessage doPost(String msg) {

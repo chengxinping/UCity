@@ -63,7 +63,7 @@ public class SmartServicePager extends BasePager {
     public void initData() {
         //修改标题
         tvTitle.setText("生活");
-        initDatas();
+        initDates();
         //初始化事件
         initListener();
         mMsgs.setSelection(mMsgs.getCount() - 1);
@@ -77,7 +77,7 @@ public class SmartServicePager extends BasePager {
         return view;
     }
 
-    private void initDatas() {
+    private void initDates() {
         mDatas = new ArrayList<ChatMessage>();
         ChatMessage initMessage = new ChatMessage(new Date(), ChatMessage.Type.INCOMING, "你好，我是大格");
         mDatas.add(initMessage);

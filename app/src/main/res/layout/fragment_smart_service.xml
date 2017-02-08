@@ -26,12 +26,11 @@
         <EditText
             android:id="@+id/id_input_msg"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/id_send_msg"
-            android:background="@drawable/login_edit_normal"
             android:textSize="18sp" />
     </RelativeLayout>
 
