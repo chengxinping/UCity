@@ -9,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.chengxinping.u_city.R;
 import com.chengxinping.u_city.view.ProgressWebView;
@@ -17,6 +16,9 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class NewsDetailActivity extends AppCompatActivity implements View.OnClickListener {
     @ViewInject(R.id.wb_news_detail)
@@ -27,6 +29,8 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
 
     @ViewInject(R.id.btn_share)
     ImageButton btnShare;
+    private String mUrl;
+    private String mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,8 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setStatusBarTintResource(R.color.colorPrimary);
 
-        String mUrl = getIntent().getStringExtra("url");
+        mUrl = getIntent().getStringExtra("url");
+        mTitle = getIntent().getStringExtra("title");
         mWebView.loadUrl(mUrl);
         WebSettings settings = mWebView.getSettings();
         settings.setBuiltInZoomControls(true);// 显示缩放按钮(wap网页不支持)
@@ -74,10 +79,20 @@ public class NewsDetailActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 break;
             case R.id.btn_share:
-                Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
+                share();
                 break;
             default:
                 break;
         }
+    }
+
+    private void share() {
+        ShareSDK.initSDK(this);
+        OnekeyShare oks = new OnekeyShare();
+        oks.disableSSOWhenAuthorize();
+        oks.setTitle(mTitle);
+        oks.setTitleUrl(mUrl);
+        oks.setSite(getString(R.string.app_name));
+        oks.show(this);
     }
 }

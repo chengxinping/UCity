@@ -116,6 +116,7 @@ public class NewsDetailPager extends BaseMenuDetailPager {
 
                 Intent intent = new Intent(mActivity, NewsDetailActivity.class);
                 intent.putExtra("url", news.url);
+                intent.putExtra("title",news.title);
                 mActivity.startActivity(intent);
             }
         });
