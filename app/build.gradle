@@ -17,6 +17,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(output.outputFile.parent, "U-City"+ ".apk");
+        }
+    }
 }
 
 dependencies {
